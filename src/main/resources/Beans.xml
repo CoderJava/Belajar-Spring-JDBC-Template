@@ -8,4 +8,8 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <bean id="customerDaoSupport" class="com.tokobuku.dao.impl.JdbcDaoSupportCustomerDao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
 </beans>
