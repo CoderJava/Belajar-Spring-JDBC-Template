@@ -6,6 +6,7 @@ import com.tokobuku.model.Customer;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDao {
 
@@ -59,5 +60,14 @@ public class CustomerDaoImpl implements CustomerDao {
         String sql = "DELETE FROM CUSTOMER WHERE cust_id = ?";
         jdbcTemplate = new JdbcTemplate(dataSource);
         jdbcTemplate.update(sql, custId);
+    }
+
+    public java.util.List<Customer> findAllCustomer() {
+        JdbcTemplate jdbcTemplate;
+        String sql = "SELECT * FROM CUSTOMER";
+        jdbcTemplate = new JdbcTemplate(dataSource);
+
+        List<Customer> customers = jdbcTemplate.query(sql, new CustomerRowMapper());
+        return customers;
     }
 }

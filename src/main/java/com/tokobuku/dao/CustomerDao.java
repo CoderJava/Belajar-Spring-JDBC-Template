@@ -2,6 +2,8 @@ package com.tokobuku.dao;
 
 import com.tokobuku.model.Customer;
 
+import java.util.List;
+
 public interface CustomerDao {
 
     void insert(Customer customer);
@@ -11,5 +13,7 @@ public interface CustomerDao {
     void update(Customer customer);
 
     void deleteByCustomerId(int custId);
+
+    List<Customer> findAllCustomer();
 
 }

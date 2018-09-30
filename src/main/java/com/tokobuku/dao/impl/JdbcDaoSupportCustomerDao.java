@@ -5,6 +5,9 @@ import com.tokobuku.dao.mapper.CustomerRowMapper;
 import com.tokobuku.model.Customer;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JdbcDaoSupportCustomerDao extends JdbcDaoSupport implements CustomerDao {
 
     public void insert(Customer customer) {
@@ -49,5 +52,14 @@ public class JdbcDaoSupportCustomerDao extends JdbcDaoSupport implements Custome
         } else {
             throw new RuntimeException("getJdbcTemplate null");
         }
+    }
+
+    public List<Customer> findAllCustomer() {
+        String sql = "SELECT * FROM CUSTOMER";
+        List<Customer> customers = new ArrayList<Customer>();
+        if (getJdbcTemplate() != null) {
+            customers = getJdbcTemplate().query(sql, new CustomerRowMapper());
+        }
+        return customers;
     }
 }
